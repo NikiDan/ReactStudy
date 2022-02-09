@@ -1,35 +1,46 @@
 import './App.css';
 import React, {useState} from "react";
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import DeleteIcon from '@mui/icons-material/Delete';
 
+function App(){
 
-function App() {
-    const [likes, setLikes] = useState(0)
-    const [value, setValue] = useState('Введите какой-то текст')
+    const [value, setValue] = useState([])
+    const [newValue, setNewValue] = useState([''])
 
-    function increment(){
-       setLikes(likes + 1);
+    const Add = (e) =>{
+        setValue([...value,newValue])
+        setNewValue('')
+
+    }
+    const getElement = (e) => {
+        setNewValue(e.target.value)
+    }
+    const asd = () => {
+        alert('pidor')
     }
 
-    function decrement(){
-        setLikes(likes - 1);
-    }
-  return (
-    <div className="App">
-      <h1>{likes}</h1>
-        <h1>{value}</h1>
-        <input type="text"
-               value={value}
-               onChange={event => setValue(event.target.value)}
-        />
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-        <Stack spacing={2}>
-            <Pagination count={999} />
-        </Stack>
-    </div>
-  );
+    return(
+        <div className="App">
+            <header>
+                <form className="formToDo" onSubmit={(event => {event.preventDefault()})}>
+                    <h1>What's you need to do today ?</h1>
+                    <input type="text"
+                           placeholder="Enter your text"
+                           onChange={getElement}
+                    ></input>
+                    <button onClick={Add} type="submit">Add</button>
+                </form>
+            </header>
+            {value.map((value, index)=>
+                <div className="mainList" key={index}>
+                   <span className="listItem">{value}</span>
+                    <DeleteIcon
+                        onClick={asd}
+                    />
+                </div>)
+            }
+        </div>
+    );
 }
 
 export default App;

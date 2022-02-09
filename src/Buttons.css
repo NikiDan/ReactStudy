@@ -1,0 +1,23 @@
+.formToDo button, input{
+    border-radius: 8px;
+    border-color: #000000;
+}
+.formToDo button{
+    padding: 0.8em 1.8em;
+    margin-left: 10px;
+    height: 40px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+.formToDo button:hover {
+    transition-duration: 0.1s;
+    background-color: #f3b199;
+    /*background-color: #996b3e;*/
+    color: #ffffff;
+}
+body input{
+    background-color: #efefef;
+    height: 25px;
+    padding: 0.41em 1.8em;
+}
