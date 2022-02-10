@@ -1,22 +1,32 @@
 import './App.css';
 import React, {useState} from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import './Animation.css';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import './Animation.css';
 
 function App(){
 
     const [value, setValue] = useState([])
-    const [newValue, setNewValue] = useState([''])
+    const [newValue, setNewValue] = useState([])
 
-    const Add = (e) =>{
-        setValue([...value,newValue])
-        setNewValue('')
+    const Add = () =>{
 
+        if (newValue.length !== 0 ) {
+            setValue([...value, newValue])
+            setNewValue('')
+        }
+        else {
+        }
     }
     const getElement = (e) => {
-        setNewValue(e.target.value)
+         setNewValue(e.target.value)
     }
-    const asd = () => {
-        alert('pidor')
+    const handleRemove = (deleteIndex) =>{
+        console.log(deleteIndex)
+        setValue(value.filter((value, index)=> index !== deleteIndex));
     }
 
     return(
@@ -27,18 +37,23 @@ function App(){
                     <input type="text"
                            placeholder="Enter your text"
                            onChange={getElement}
-                    ></input>
-                    <button onClick={Add} type="submit">Add</button>
+                    >
+                    </input>
+                    <Button variant = "outlined" onClick={Add} type="submit">Add</Button>
                 </form>
             </header>
-            {value.map((value, index)=>
-                <div className="mainList" key={index}>
-                   <span className="listItem">{value}</span>
-                    <DeleteIcon
-                        onClick={asd}
-                    />
-                </div>)
-            }
+            <TransitionGroup component="div">
+                {value.map((value, index)=>
+                        <CSSTransition key={value} timeout={200} classNames="animation">
+                            <div className="mainList" key={index}>
+                                <span className="listItem">{value}</span>
+                                <IconButton onClick={()=>handleRemove(index)}>
+                                    <DeleteIcon/>
+                                </IconButton>
+                            </div>
+                        </CSSTransition>
+                    )
+                }</TransitionGroup>
         </div>
     );
 }

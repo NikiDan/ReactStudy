@@ -5,7 +5,7 @@ import './Buttons.css';
 import './formToDo.css';
 import './mainList.css';
 import App from './App';
-//import * as serviceWorker from './serviceWorker';
+
 
 
 ReactDOM.render(
