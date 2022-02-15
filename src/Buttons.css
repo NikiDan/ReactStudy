@@ -13,13 +13,13 @@
 }
 .formToDo button:hover {
     transition-duration: 0.1s;
-    /*background-color: #f3b199;*/
-    /*background-color: #996b3e;*/
     color: #000000;
     border-color: #000000;
 }
 body input{
     background-color: #efefef;
     height: 25px;
+}
+.headerInput{
     padding: 0.41em 1.8em;
 }

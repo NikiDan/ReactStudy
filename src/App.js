@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import './Animation.css';
 import './Animation.css';
 import 'animate.css';
+import CreateIcon from '@mui/icons-material/Create';
 
 
 function App(){
@@ -27,15 +28,17 @@ function App(){
          setNewValue(e.target.value)
     }
     const handleRemove = (deleteIndex) =>{
-        const list  = document.getElementById('mainList')
-
-        list.addEventListener('animationend', () => {
-
-             list.classList.add('animate__bounceOutLeft')
-        } )
-
         setValue(value.filter((value, index)=> index !== deleteIndex));
-
+    }
+    const handleChange = (text, changeIndex) =>{
+        const input = "<input type='text'>"
+        const span = document.getElementById('span')
+        span.innerHTML = input;
+        // setValue(value.map(item => {
+        //     if(item.key === changeIndex){
+        //         item.text = text;
+        //     }
+        // }))
     }
 
     return(
@@ -48,6 +51,7 @@ function App(){
                            placeholder="Enter your text"
                            id="textInput"
                            onChange={getElement}
+                           className="headerInput"
                     >
                     </input>
                     <Button variant = "outlined" onClick={Add} type="submit">Add</Button>
@@ -55,10 +59,15 @@ function App(){
             </header>
                 {value.map((value, index)=>
                         <div className="mainList animate__animated animate__flipInX" key={index} id="mainList">
-                            <span className="listItem">{value}</span>
-                            <IconButton onClick={()=>handleRemove(index)}>
-                                <DeleteIcon/>
-                            </IconButton>
+                            <div className="listItem" id="span">{value}</div>
+                            <div>
+                                <IconButton onClick={()=>handleChange(index)}>
+                                    <CreateIcon className="createIcon"/>
+                                </IconButton>
+                                <IconButton onClick={()=>handleRemove(index)}>
+                                    <DeleteIcon/>
+                                </IconButton>
+                            </div>
                         </div>
                     )
                 }
