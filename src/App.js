@@ -31,18 +31,17 @@ function App(){
         setValue(value.filter((value, index)=> index !== deleteIndex));
     }
     const handleChange = (text, changeIndex) =>{
-        const input = "<input type='text'>"
-        const span = document.getElementById('span')
-        span.innerHTML = input;
-        // setValue(value.map(item => {
-        //     if(item.key === changeIndex){
-        //         item.text = text;
-        //     }
-        // }))
+        console.log(text)
+        const span = value.map((item, index) => {
+            if(index===changeIndex){
+                return text;
+            }
+        })
+        setValue(span);
+        console.log(span);
     }
 
     return(
-
         <div className="App">
             <header>
                 <form className="formToDo" onSubmit={(event => {event.preventDefault()})}>
